@@ -1,20 +1,22 @@
 class Solution {
 public:
-     void rec(int index , vector<int>& nums, vector<int> &ans , int maxi , int mini){
-        if(index == nums.size()) {
-            return ;
-        }
-        while(mini < nums[index]){
-            ans.push_back(mini);
-            mini++;
-        }
-        
-        rec(index +1, nums , ans , maxi , mini+1);
-     }
     vector<int> findMissingElements(vector<int>& nums) {
         vector<int> ans;
-        sort(nums.begin() , nums.end());
-        rec(0 , nums , ans , nums[nums.size() -1] , nums[0]);
-        return ans;
+       int mini = *min_element(nums.begin(), nums.end());
+       int maxi = *max_element(nums.begin(), nums.end());
+       for(int i = mini ; i<= maxi ; i++){
+            bool found = false;
+            for(int x :nums){
+                if(x == i){
+                    found = true;
+                    break;
+                }
+            }
+            if(found == false){
+                ans.push_back(i);
+            }
+         
+       } 
+       return ans;
     }
 };
