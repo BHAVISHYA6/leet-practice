@@ -4,7 +4,7 @@ public:
         if(sum == 0 && curr.size() == k){
             ans.push_back(curr);
         }
-        if(sum <= 0 || curr.size()> k) return;
+        if(sum < 0 || curr.size()> k) return;
         for(int i = start ; i<= 9 ; i++){
             if(i <= sum){
             curr.push_back(i);
