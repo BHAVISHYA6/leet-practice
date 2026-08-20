@@ -6,7 +6,7 @@ public:
        while( r < s.size()){
             mp[s[r]]++;
             maxf = max( maxf , mp[s[r]]);
-            while( r -l+1 - maxf > k){
+            if( r -l+1 - maxf > k){
                 mp[s[l]]--;
                 if(mp[s[l]] == 0){
                     mp.erase(s[l]);
