@@ -1,39 +1,23 @@
 class Solution {
 public:
     vector<vector<int>> mergeSimilarItems(vector<vector<int>>& items1, vector<vector<int>>& items2) {
-        vector<vector<int>> ret;
-        sort(items1.begin(), items1.end());
-        sort(items2.begin(), items2.end());
-        for(int i =0 ; i<items1.size(); i++){
-            for(int j =0 ; j< items2.size(); j++){
-                if(items1[i][0] == items2[j][0]){
-                    items1[i][1] = items1[i][1]+ items2[j][1];
-                    ret.push_back(items1[i]);
-                    break;
-                }
+        unordered_map<int, int> mp;
+        for(int i =0 ;i< items1.size(); i++){
+            mp[items1[i][0]] = items1[i][1];
+        }
+        for(int j =0 ; j< items2.size() ; j++){
+            if(mp.find(items2[j][0]) != mp.end()){
+                mp[items2[j][0]] += items2[j][1];
             }
-            if(ret.empty()){
-                ret.push_back(items1[i]);
-            }
-            if(!ret.empty() && ret.back()[0] != items1[i][0]){
-                ret.push_back(items1[i]);
+            else{
+                mp[items2[j][0]] = items2[j][1];
             }
         }
-
-        for(int j =0 ; j< items2.size(); j++){
-            bool flag = false ;
-            for(int i =0 ; i< items1.size(); i++){
-                if(items1[i][0] == items2[j][0]){
-                    flag = true ;
-                    break;
-                }
-            }
-            if(!flag){
-                ret.push_back(items2[j]);
-            }
+        vector<vector<int>> ret;
+        for(auto x: mp){
+            ret.push_back({x.first , x.second});
         }
         sort(ret.begin(), ret.end());
         return ret;
-        
     }
 };
