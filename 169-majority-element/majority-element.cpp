@@ -15,11 +15,12 @@ public:
                 cnt --;
             }
         }
-        int cc = 0;
-        for(int i =0 ; i<n; i++){
-            if(nums[i] == el) cc++;
-        }
-        if(cc > n/2) return el;
-        else return -1;
+        // int cc = 0;
+        // for(int i =0 ; i<n; i++){
+        //     if(nums[i] == el) cc++;
+        // }
+        // if(cc > n/2) return el;
+        // else return -1;
+        return el;
     }
 };
