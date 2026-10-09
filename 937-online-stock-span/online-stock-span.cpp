@@ -4,9 +4,7 @@ public:
     int ind;
     StockSpanner() {
         ind = -1;
-        while(!st.empty()){
-            st.pop();
-        }      
+             
     }
     
     int next(int price) {
