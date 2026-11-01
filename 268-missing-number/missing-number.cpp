@@ -1,13 +1,13 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        for(int i = 0 ; i<= nums.size() ; i++){
-            bool flag = false;
-            for(int j=0 ;j <nums.size(); j++ ){
-                if(nums[j] == i) flag = true;
-            }
-            if(!flag) return i;
+        unordered_map<int, int> mp;
+        for(int i =0;i<nums.size() ; i++){
+            mp[nums[i]]++;
         }
-        return -1;
+        for(int i =0 ; i<= nums.size() ; i++){
+            if(mp.count(i) == 0) return i;
+        }
+    return -1;
     }
 };
